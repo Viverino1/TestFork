@@ -31,17 +31,17 @@ public class Motor {
     }
 
     public void move(double speed){
-        speed = Util.Clamp(speed, 1);
-        speed = limitSpeedEnable ? Util.Clamp(speed, limitSpeedMin, limitSpeedmax) : speed;
+        speed = Util.clamp(speed, 1);
+        speed = limitSpeedEnable ? Util.clamp(speed, limitSpeedMin, limitSpeedmax) : speed;
         speed = mapLimitSpeedEnable ? speed * mapLimitSpeed : speed;
         while (running){}
         SetDCMotorSpeed(speed);
     }
     public void moveTo(int pos, double speed){
-        speed = Util.Clamp(speed, 1);
+        speed = Util.clamp(speed, 1);
         speed = Math.abs(speed);
-        speed = limitSpeedEnable ? Util.Clamp(speed, limitSpeedMin, limitSpeedmax) : speed;
-        speed = mapLimitSpeedEnable ? Util.Clamp(speed, mapLimitSpeed) : speed;
+        speed = limitSpeedEnable ? Util.clamp(speed, limitSpeedMin, limitSpeedmax) : speed;
+        speed = mapLimitSpeedEnable ? Util.clamp(speed, mapLimitSpeed) : speed;
         while (running){}
         running = true;
         MotorThread motorThread = new MotorThread(pos, speed);
@@ -74,13 +74,13 @@ public class Motor {
         }
     }
     public void limit(double limit){
-        limitSpeedMin = -Math.abs(Util.Clamp(limit, 1));
-        limitSpeedmax = Math.abs(Util.Clamp(limit, 1));
+        limitSpeedMin = -Math.abs(Util.clamp(limit, 1));
+        limitSpeedmax = Math.abs(Util.clamp(limit, 1));
         limitSpeedEnable = true;
     }
     public void limit(double min, double max){
-        limitSpeedMin = Util.Clamp(min, 1);
-        limitSpeedmax = Util.Clamp(max, 1);
+        limitSpeedMin = Util.clamp(min, 1);
+        limitSpeedmax = Util.clamp(max, 1);
         limitSpeedEnable = true;
     }
     public void limit(boolean limit){
@@ -89,7 +89,7 @@ public class Motor {
 
     public void mapLimit(double speed){
         mapLimitSpeedEnable = true;
-        speed = Math.abs(Util.Clamp(speed, 1));
+        speed = Math.abs(Util.clamp(speed, 1));
         mapLimitSpeed = speed;
     }
     public void mapLimit(double min, double max){
