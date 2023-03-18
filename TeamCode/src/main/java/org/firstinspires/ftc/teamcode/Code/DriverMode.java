@@ -5,7 +5,7 @@ import org.firstinspires.ftc.teamcode.VergeTools.*;
 public class DriverMode {
     Motor motor;
     public void Init(HardwareMap hardwareMap){
-        motor = new Motor("motor", hardwareMap);
+        motor = new Motor("Vivek's Fork", hardwareMap);
     }
     public void Loop() throws InterruptedException {
         motor.move(1);
